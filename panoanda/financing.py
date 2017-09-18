@@ -141,10 +141,20 @@ class Financing(object):
         quote = ticker.split('_') [1]
         time = float((hours /24.0) / 365.0)
         curr = self.__account.currency
-        base_curr = self.__quotes._currency_account_pricing(base + '_' + curr)        
-        quote_curr = self.__quotes._currency_account_pricing(quote + '_' + curr)
-        base_quote = self.__quotes._currency_account_pricing(base+ '_' + quote)
+
+        if curr == 'USD':
+
+            base_curr = self.__quotes.__currency_account_pricing_USD(base + '_' + curr)        
+            quote_curr = self.__quotes.__currency_account_pricing_USD(quote + '_' + curr)
+            base_quote = self.__quotes.__currency_account_pricing_USD(base+ '_' + quote)
         
+        else:
+
+            base_curr = self.__quotes.__currency_account_pricing_notUSD(base + '_' + curr)        
+            quote_curr = self.__quotes.__currency_account_pricing_notUSD(quote + '_' + curr)
+            base_quote = self.__quotes.__currency_account_pricing_notUSD(base+ '_' + quote)
+
+
         if position == 'long':
                  
             base_int_rate = (units * int_rate.loc[base]['ask'] * time * 
