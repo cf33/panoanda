@@ -6,7 +6,7 @@ Created on Sat Sep 16 19:01:15 2017
 from setuptools import setup, find_packages
 import sys, os
 
-setup(name='pandoanda',
+setup(name='panoanda',
       version= '0.1',
       description="PANDAS integration for the OANDA REST API",
       long_description="""\
@@ -23,7 +23,7 @@ setup(name='pandoanda',
       keywords='OANDA FOREX wrapper REST API',
       author='Darío Corral',
       author_email='dario.corralmorales@gmail.com',
-      url='http://github.com/dariocorral/pandoanda',
+      url='http://github.com/dariocorral/panoanda',
       license='MIT',
       packages=find_packages(),
       include_package_data=True,

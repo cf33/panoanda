@@ -34,7 +34,7 @@ class Tickers(object):
             * Pip Decimals
         """
         #Call dict OANDA API and transform to DataFrame
-        df = self._oanda_api.get_instruments(OANDA_CONFIG['account'])
+        df = self._oanda_api.get_instruments(os.environ['ACCOUNT'])
         df = df.get('instruments')
         df = pd.DataFrame.from_dict(df)
         base = df['instrument'].str.split('_', expand = True)
