@@ -31,7 +31,7 @@ Panoanda includes these classes ready to use with Pandas dataframe:
  - Units (Position size calculation)
  - Financing (Financing charges calculation)
 
- #Candles
+ # Candles
 
  ```Python
  from panoanda.candles import Candles
@@ -44,9 +44,9 @@ df =  candles.dataframe(50, 'D', False, *['GBP_USD', 'USD_JPY'])
 print (df)
  ```
 
- #Tickers
+ # Tickers
 
- 
+
 
 
 
