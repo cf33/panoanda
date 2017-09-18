@@ -30,6 +30,7 @@ Panoanda includes these classes ready to use with Pandas dataframe:
  - Spreads (OANDA historic spreads)
  - Units (Position size calculation)
  - Financing (Financing charges calculation)
+ - Account (account info: NAV, balance, margin...)
 
  ### Candles
 
@@ -43,14 +44,6 @@ Panoanda includes these classes ready to use with Pandas dataframe:
 df =  candles.dataframe(50, 'D', False, *['GBP_USD', 'USD_JPY'])
 print (df)
 
-"""
-Output:
-            ticker	 open	  high	   low	    close	 volume	complete
-2017-07-11	GBP_USD	 1.28739  1.29278  1.28309  1.2849	 45653	True
-2017-07-12	GBP_USD	 1.284965 1.29082  1.28116	1.29021  61411	True
-2017-07-13	GBP_USD	 1.2902	  1.29647  1.29013	1.29570	 38507	True
-...
-"""
  ```
 
  ### Tickers
@@ -69,15 +62,100 @@ Output:
 
  df['tickValue'] = tickers.tick_value(df.index)
 
-"""
-Output:
-        	base tickValue
- EUR_USD	100  0.0001
- GBP_JPY	100	 0.01
- USD_CNH	100	 0.0001
- AUD_USD	100	 0.0001
-"""
 ```
+### Indicators
+
+```Python
+
+from panoanda.indicators import Indicators
+
+ #Instance
+ indicators = Indicators()
+
+ #A bollinger bands dataframe (sma, std bands) according index last dataframe (df)
+ df1 = indicators.boll_bands(100, 'H4', 'close', 2, *df.index)
+
+ #Adding a column with an exponential moving average
+ df1['ema'] = indicators.ema(50, 'H4', 'close', *df1.index)
+
+ ```
+### Spreads
+
+```Python
+from panoanda.spreads import Spreads
+
+#Instance
+spreads = Spreads()
+
+#Call a dataframe with average spreads (min, avg, max) from last year
+tickers = ['GBP_USD', 'USD_CAD', 'USD_JPY']
+spreadsDf = spreads.dataframe('Y', *tickers)
+print(spreadsDf)
+```
+
+### Units
+
+```Python
+
+import pandas as pd
+from panoanda.units import Units
+
+#Instance
+units = Units()
+
+#Call a dataframe with pips and amounts to trade
+tickers = ['GBP_USD', 'USD_CAD', 'USD_JPY']
+pips = [100, 55, 39 ]
+amounts = [120, 245, 520] #account currency amounts
+
+#Dataframe
+df = pd.DataFrame(data = [tickers, pips, amounts] )
+df = df.transpose()
+df.columns = ('ticker', 'pips', 'amount')
+df.set_index('ticker', inplace = True)
+
+#New units column calculated according dataframe index / columns 
+df['units'] = units.dataframe(*(df.index, df['pips'], df['amount']))
+print(df)
+```
+
+### Financing
+
+```Python
+
+from panoanda.financing import Financing
+
+#Instance
+financing = Financing()
+
+#List to use (index or columns dataframe are valid inputs too):
+positions = ['long', 'short', 'long']
+tickers = ['USD_CHF', 'EUR_USD', 'AUD_USD']
+units = [120000, 250000, 40000] #You can use Units for this
+
+#Interest charges for 120 hours holding position, 2 round decimals
+df = financing.interest_dataframe(120, 2, *(positions, tickers, units))
+print(df)
+
+```
+
+### Account
+
+```Python
+
+from panoanda.account import Account
+
+#Instance
+account = Account()
+
+#NAV (Net asset value)
+nav = account.nav
+print (nav)
+
+```
+
+Explore help documentation to know additional functions
+
 
 
 
