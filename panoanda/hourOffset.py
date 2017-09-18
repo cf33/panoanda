@@ -1,13 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Created on Sun Sep 17 07:26:03 2017
-
-@author: dariocorral
-"""
-
-"""
-Created on Tue Aug 29 14:30:15 2017
 
 @author: dariocorral
 """
