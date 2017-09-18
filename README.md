@@ -5,7 +5,7 @@ Panoanda is a Pandas framework for OANDA API V1.
 
 1. You can use this framework only if you have a "legacy" OANDA account (live or demo). (V20 not included)
 
-2. You need to create a new enviroment with 3 enviroment variables :
+2. You need to create a new environment with 3 environment variables :
    - "ACCOUNT" -> Your legacy OANDA account
    - "TOKEN" -> Your API token
    - "ENV" -> "practice" or "live"
