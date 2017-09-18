@@ -43,8 +43,9 @@ Panoanda includes these classes ready to use with Pandas dataframe:
 df =  candles.dataframe(50, 'D', False, *['GBP_USD', 'USD_JPY'])
 print (df)
 
-"""Output:
-           ticker	 open	  high	   low	    close	 volume	complete
+"""
+Output:
+            ticker	 open	  high	   low	    close	 volume	complete
 2017-07-11	GBP_USD	 1.28739  1.29278  1.28309  1.2849	 45653	True
 2017-07-12	GBP_USD	 1.284965 1.29082  1.28116	1.29021  61411	True
 2017-07-13	GBP_USD	 1.2902	  1.29647  1.29013	1.29570	 38507	True
@@ -70,11 +71,11 @@ print (df)
 
 """
 Output:
-        	base    tickValue
- EUR_USD	100     0.0001
- GBP_JPY	100	    0.01
- USD_CNH	100	    0.0001
- AUD_USD	100	    0.0001
+        	base tickValue
+ EUR_USD	100  0.0001
+ GBP_JPY	100	 0.01
+ USD_CNH	100	 0.0001
+ AUD_USD	100	 0.0001
 """
 ```
 
