@@ -46,9 +46,19 @@ class Units(object):
         
         #It is not available EUR_XXX quotes but we can get this value
         # doing (1 / XXX_EUR)
-        position_risk_quote = (amount * (1 / 
-                               self.__quotes._currency_account_pricing(
-                              quote + '_' +  self.__account.currency)))
+        curr = self.__account.currency
+
+        if curr == 'USD':
+        
+            position_risk_quote = (amount * (1 / 
+                                self.__quotes.__currency_account_pricing_USD(
+                                quote + '_' +  self.__account.currency)))
+        else:
+
+            position_risk_quote = (amount * (1 / 
+                                self.__quotes.__currency_account_pricing_notUSD(
+                                quote + '_' +  self.__account.currency)))
+
         
         pip_value_quote = position_risk_quote / pips
         
